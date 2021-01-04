@@ -17,7 +17,6 @@
               <!-- Name -->
               <text-input-component
                 v-model="form.name"
-                :rules="{required: true, uniqueTrxMethod: form.id}"
                 label="Name"
               ></text-input-component>
               <!-- Number required -->
@@ -29,7 +28,7 @@
               <textarea-component
                 v-model="form.note"
                 label="Note"
-              ></textarea-component>              
+              ></textarea-component>
             </ValidationObserver>
         </div>
 
@@ -59,7 +58,7 @@
         ></footer-buttons-component>
       </div>
     </right-side-bar-component>
-  </div>  
+  </div>
 </template>
 
 <script>

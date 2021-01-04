@@ -18,7 +18,6 @@
               <!-- Group -->
               <cause-group-select-component
                 v-model="form.category_group_id"
-                rules="required"
               ></cause-group-select-component>
               <!-- Recipient Type -->
               <div class="form-group">
@@ -43,48 +42,45 @@
                       v-model="form.is_multiple_recipient"
                       type="Number"
                       label="Multiple"
-                      @input="onChangeRecipientType" 
+                      @input="onChangeRecipientType"
                     >
                     </radio-input-component>
                   </div>
                 </div>
-              </div>  
+              </div>
               <!-- Recipient -->
               <contact-select-component
                 v-show="!form.is_multiple_recipient"
                 v-model="form.contact_id"
                 label="Recipient"
                 placeholder="Choose recipient"
-                :rules="{required: !form.is_multiple_recipient}"
                 @add-new="onAddNewContact"
               ></contact-select-component>
               <!-- name -->
               <text-input-component
                 v-show="form.is_multiple_recipient"
                 v-model="form.name"
-                :rules="{required: !!form.is_multiple_recipient}"
                 label="Name"
               ></text-input-component>
               <!-- Description -->
               <text-input-component
                 v-model="form.description"
                 label="Description"
-              ></text-input-component>              
+              ></text-input-component>
               <!-- Distribution Class -->
               <dist-class-select-component
                 v-model="form.distribution_class_id"
-                rules="required"
               ></dist-class-select-component>
               <!-- Exclude from full export -->
               <checkbox-component
                 v-model="form.is_excluded_from_full_export"
                 label="Exclude from full export"
-              ></checkbox-component>                
+              ></checkbox-component>
               <!-- Note -->
               <textarea-component
                 v-model="form.note"
                 label="Note"
-              ></textarea-component>            
+              ></textarea-component>
             </ValidationObserver>
         </div>
 
@@ -126,11 +122,11 @@
                 @click="saveAndClose"
                 :form-busy="isSavingAndCloseProcess"
               ></action-button>
-          </div>          
+          </div>
         </div>
       </div>
     </right-side-bar-component>
-  </div>  
+  </div>
 </template>
 
 <script>

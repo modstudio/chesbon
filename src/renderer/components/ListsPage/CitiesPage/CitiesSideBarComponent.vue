@@ -17,7 +17,6 @@
               <!-- City -->
               <text-input-component
                 v-model="form.city"
-                :rules="{required: true}"
                 label="City"
               ></text-input-component>
               <div class="row gutter-8">
@@ -41,9 +40,8 @@
               <!-- Country -->
               <select-countries-component
                 v-model="form.country"
-                :rules="{required: true}"
                 @change="onChangeCountry"
-              ></select-countries-component>           
+              ></select-countries-component>
             </ValidationObserver>
         </div>
 
@@ -88,7 +86,7 @@
         </div>
       </div>
     </right-side-bar-component>
-  </div>  
+  </div>
 </template>
 
 <script>

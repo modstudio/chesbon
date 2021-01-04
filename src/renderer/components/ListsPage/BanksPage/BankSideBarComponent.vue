@@ -17,19 +17,18 @@
               <!-- Contact -->
               <text-input-component
                 v-model="form.name"
-                :rules="{required: true, uniqueBank: [form.name, form.id]}"
                 label="Name"
               ></text-input-component>
               <!-- Exclude from full export -->
               <checkbox-component
                 v-model="form.is_excluded_from_full_export"
                 label="Exclude from full export"
-              ></checkbox-component>        
+              ></checkbox-component>
               <!-- Note -->
               <textarea-component
                 v-model="form.note"
                 label="Note"
-              ></textarea-component>            
+              ></textarea-component>
             </ValidationObserver>
         </div>
 
@@ -71,10 +70,10 @@
               @click="saveAndClose"
               :form-busy="isSavingAndCloseProcess"
             ></action-button>
-        </div>        
+        </div>
       </div>
     </right-side-bar-component>
-  </div>  
+  </div>
 </template>
 
 <script>

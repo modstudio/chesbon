@@ -17,19 +17,16 @@
               <!-- Company Name -->
               <text-input-component
                 v-model="form.company_name"
-                :rules="{required: !form.first_name || !form.last_name}"
                 label="Company name"
               ></text-input-component>
               <!-- First Name -->
               <text-input-component
                 v-model="form.first_name"
-                :rules="{required: !form.company_name}"
                 label="First name"
               ></text-input-component>
               <!-- Last Name -->
               <text-input-component
                 v-model="form.last_name"
-                :rules="{required: !form.company_name}"
                 label="Last name"
               ></text-input-component>
               <!-- Id Number -->

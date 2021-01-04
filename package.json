@@ -1,5 +1,5 @@
 {
-  "name": "accounting",
+  "name": "chesbon",
   "version": "0.1.1",
   "author": "modstud.io <hey@modstud.io>",
   "description": "Non-Profit Accounting Application",
@@ -22,8 +22,8 @@
     "postinstall": "npm run lint:fix"
   },
   "build": {
-    "productName": "Accounting",
-    "appId": "io.modstud.accounting",
+    "productName": "Chesbon",
+    "appId": "io.modstud.chesbon",
     "directories": {
       "output": "build"
     },

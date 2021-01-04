@@ -24,12 +24,10 @@
               <datepicker-component
                 v-model="form.date"
                 label="Date"
-                rules="required"
               ></datepicker-component>
               <!-- Transaction type -->
               <transaction-type-select-component v-show="isNewMode || !isTransfer"
                 v-model="form.transaction_type_id"
-                rules="required"
                 @change="onTypeChange"
               ></transaction-type-select-component>
 
@@ -46,21 +44,18 @@
                 <category-select-component
                   v-model="form.category_id"
                   label="From (Category)"
-                  rules="required"
                   :transfer-amount="-form.amount"
                 ></category-select-component>
                 <!-- Category To -->
                 <category-select-component
                   v-model="form.transfer_category_id"
                   label="To (Category)"
-                  :rules="{required: true, is_not: form.category_id}"
                   :transfer-amount="form.amount"
                 ></category-select-component>
                 <!-- Amount -->
                 <currency-input-component
                   v-model="form.amount"
                   label="Amount"
-                  rules="required|is_not:0.00"
                   :disable-currency-class="true"
                 ></currency-input-component>
               </template>
@@ -79,7 +74,6 @@
                     <!-- number -->
                     <text-input-component
                       v-model="form.number"
-                      :rules="{required: isRequredNumber}"
                       label="Number"
                     ></text-input-component>
                   </div>
@@ -90,7 +84,6 @@
                     v-if="isCause"
                     v-model="form.category_id"
                     label="Category"
-                    rules="required"
                     @add-new="onAddNewCause"
                   ></cause-select-component>
                   <!-- Loan -->
@@ -98,7 +91,6 @@
                     v-if="isLoan"
                     v-model="form.category_id"
                     label="Category"
-                    rules="required"
                     @add-new="onAddNewLoan"
                   ></loan-select-component>
                   <!-- Pikadon -->
@@ -106,7 +98,6 @@
                     v-if="isPikadon"
                     v-model="form.category_id"
                     label="Category"
-                    rules="required"
                     @add-new="onAddNewPikadon"
                   ></pikadon-select-component>
                   <!-- Pledge -->
@@ -114,7 +105,6 @@
                     v-if="isPledge"
                     v-model="form.category_id"
                     label="Category"
-                    rules="required"
                     @add-new="onAddNewPledge"
                   ></pledge-select-component>
                   <!-- General Donation -->
@@ -122,7 +112,6 @@
                     v-if="isGeneralDonation"
                     v-model="form.category_id"
                     label="Category"
-                    rules="required"
                     @add-new="onAddNewGeneralDonation"
                   ></general-donation-select-component>
                   <!-- Starting Balance -->
@@ -130,14 +119,12 @@
                     v-if="isStartingBalance"
                     v-model="form.category_id"
                     label="Category"
-                    rules="required"
                   ></starting-balance-category-select-component>
                   <!-- Adjustment -->
                   <category-select-component
                     v-if="isAdjustment"
                     v-model="form.category_id"
                     label="Category"
-                    rules="required"
                   ></category-select-component>
                   <!-- Debit/Credit -->
                   <debit-credit-component
@@ -156,7 +143,6 @@
                     v-if="!isPledge && !isStartingBalance && !isAdjustment"
                     v-model="form.contact_id"
                     label="Payee"
-                    :rules="{required: isDistribution}"
                     @add-new="onAddNewContact"
                   ></contact-select-component>
                 </div>
@@ -164,7 +150,6 @@
                 <currency-input-component
                   v-model="form.amount"
                   label="Amount"
-                  rules="required|is_not:0.00"
                   :is-debit="isDebit"
                 ></currency-input-component>
                 <!-- Exclude from full export -->
