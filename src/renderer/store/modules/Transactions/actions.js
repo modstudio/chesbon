@@ -15,6 +15,9 @@ function parseAmount(amount) {
   if (typeof (amount) === 'number') {
     return amount;
   }
+  if (!amount) {
+    return 0;
+  }
   return Number.parseFloat(amount.replace(',', ''));
 }
 
