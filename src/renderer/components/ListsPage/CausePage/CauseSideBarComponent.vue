@@ -18,6 +18,7 @@
               <!-- Group -->
               <cause-group-select-component
                 v-model="form.category_group_id"
+                rules="required"
               ></cause-group-select-component>
               <!-- Recipient Type -->
               <div class="form-group">
