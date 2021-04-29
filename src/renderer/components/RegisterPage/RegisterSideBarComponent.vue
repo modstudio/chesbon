@@ -264,7 +264,22 @@ export default {
       if (this.isStartingBalance) {
         return `Starting Balance | ${this.currentItem.category_name}`;
       }
-      return `${this.currentItem.type_name} | ${this.currentItem.category_name}`;
+      if (this.isTransfer) {
+        let categoryName;
+        let categoryToName;
+        if (this.currentItem.related_transaction_id) {
+          // If we have Transaction To
+          categoryToName = this.currentItem.category_name ? ` to ${this.currentItem.category_name}` : '';
+          categoryName = this.currentItem.related_transaction_category_name ? this.currentItem.related_transaction_category_name : '';
+        } else {
+          // If we have Transaction From
+          categoryName = this.currentItem.category_name ? this.currentItem.category_name : '';
+          categoryToName = this.currentItem.transfer_transation_category_name ? ` to ${this.currentItem.transfer_transation_category_name}` : '';
+        }
+        return categoryName + categoryToName;
+      }
+      const categoryName = this.currentItem.category_name ? ` | ${this.currentItem.category_name}` : '';
+      return `${this.currentItem.type_name + categoryName}`;
     },
 
     isCause() {
