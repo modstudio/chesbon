@@ -262,9 +262,11 @@ export default {
         return '';
       }
       if (this.isStartingBalance) {
-        return `Starting Balance | ${this.currentItem.category_name}`;
+        const categoryName = this.currentItem.category_name ? ` | ${this.currentItem.category_name}` : '';
+        return `Starting Balance${categoryName}`;
       }
-      return `${this.currentItem.type_name} | ${this.currentItem.category_name}`;
+      const categoryName = this.currentItem.category_name ? ` | ${this.currentItem.category_name}` : '';
+      return `${this.currentItem.type_name + categoryName}`;
     },
 
     isCause() {
