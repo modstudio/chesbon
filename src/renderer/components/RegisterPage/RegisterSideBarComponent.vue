@@ -11,7 +11,12 @@
       <div>
         <div class="info-sidebar__body" ref="form" v-show="!isDeleteMode">
             <div class="info-sidebar__block-header">
-              <h4>Transaction</h4>
+              <h4 v-if="!isTransfer">
+                Transaction
+              </h4>
+              <h4 v-else>
+                  Transfer
+              </h4>
               <button type="button" class="btn btn-icon btn-icon--w-text" v-if="!isNewMode"
                 @click="duplicate"
               >
@@ -40,24 +45,36 @@
 
               <!-- Transfer -->
               <template v-if="isTransfer">
+                 <!-- Amount -->
+                <currency-input-component
+                  v-model="form.amount"
+                  label="Amount"
+                  :disable-currency-class="true"
+                ></currency-input-component>
+                  <hr>
                 <!-- Category from -->
                 <category-select-component
                   v-model="form.category_id"
                   label="From (Category)"
                   :transfer-amount="-form.amount"
                 ></category-select-component>
+                <!-- Note from -->
+                <textarea-component
+                  v-model="form.note_from"
+                  label="Note"
+                ></textarea-component>
+                  <hr>
                 <!-- Category To -->
                 <category-select-component
                   v-model="form.transfer_category_id"
                   label="To (Category)"
                   :transfer-amount="form.amount"
                 ></category-select-component>
-                <!-- Amount -->
-                <currency-input-component
-                  v-model="form.amount"
-                  label="Amount"
-                  :disable-currency-class="true"
-                ></currency-input-component>
+                <!-- Note to -->
+                <textarea-component
+                  v-model="form.note_to"
+                  label="Note"
+                ></textarea-component>
               </template>
               <!-- End Transfer -->
 
@@ -140,9 +157,9 @@
                   ></debit-credit-component>
                   <!-- Payee -->
                   <contact-select-component
-                    v-if="!isPledge && !isStartingBalance && !isAdjustment"
+                    v-if="!isPledge && !isStartingBalance && !isAdjustment && !isGeneralDonation"
                     v-model="form.contact_id"
-                    label="Payee"
+                    :label="this.form.transaction_type_id !== 1 ? 'Payee' : 'Donor'"
                     @add-new="onAddNewContact"
                   ></contact-select-component>
                 </div>
@@ -358,6 +375,8 @@ export default {
         amount: null,
         is_deposit: 0,
         note: '',
+        note_from: '',
+        note_to: '',
       };
     },
 
@@ -382,10 +401,14 @@ export default {
             // If we have Transaction To
             this.form.transfer_category_id = this.form.category_id;
             this.form.category_id = this.currentItem.related_transaction_category_id;
+            this.form.note_to = this.currentItem.note;
+            this.form.note_from = this.currentItem.related_transaction_note;
           } else {
             // If we have transaction From
             this.form.amount = -this.form.amount;
             this.form.transfer_category_id = this.currentItem.transfer_transaction_category_id;
+            this.form.note_from = this.currentItem.note;
+            this.form.note_to = this.currentItem.transfer_transaction_note;
           }
         }
 
